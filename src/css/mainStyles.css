@@ -1,0 +1,38 @@
+h1 {
+    color: rgba(150, 5, 150, 1.0);
+    font-size: 800%;
+    height: "auto";
+    font-family: 'Courier New';
+    text-align: center;
+	text-shadow: 7px 3px 0px rgb(50, 5, 50);
+    margin: 10px 0px 0px 0px;
+    user-select: none;
+    position: relative;
+}
+
+body {
+    background: rgb(20, 0, 30) no-repeat;
+    background-image: url(../img/icon.svg);
+    background-position: 0px 85px;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+.mainpage section {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    position: relative;
+    background-image:
+        linear-gradient(to right,
+            rgba(156, 28, 129, 0.4) 0%,
+            rgba(156, 28, 129, 0.3) 30%,
+            rgba(156, 28, 129, 0.2) 45%,
+            rgba(156, 28, 129, 0.2) 65%,
+            rgba(156, 28, 129, 0.3) 70%,
+            rgba(156, 28, 129, 0.4) 100%
+        );
+    font-size: 250%;
+    color: rgb(199, 199, 199);
+}
