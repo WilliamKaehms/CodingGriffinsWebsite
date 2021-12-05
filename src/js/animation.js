@@ -24,28 +24,32 @@ class Color {
 }
 
 class Line {
-    constructor(x, y, length, max_length, color, stepsize) {
+    constructor(x, y, length, min_length, max_length, color, stepsize) {
         this.x = x;
         this.y = y;
         this.length = length;
+        this.min_length = min_length;
         this.max_length = max_length;
         this.color = color;
-        this.stepsize = stepsize
+        this.stepsize = stepsize;
+        this.ascending = false;
     }
 }
 
 class LineAnimation {
     constructor(
-            ctx, {
-            nlines = 10,
-            linewidth = 4,
-            minstepsize = 1.0,
-            maxstepsize = 1.0,
-            shortest = 10,
-            longest = 100,
-            color = undefined,
-            origin = {x: 0, y: 0},
-            direction = {x: 1, y: 1}}
+            ctx,
+            {
+                nlines = 10,
+                linewidth = 4,
+                minstepsize = 1.0,
+                maxstepsize = 1.0,
+                shortest = 10,
+                longest = 100,
+                color = undefined,
+                origin = {x: 0, y: 0},
+                direction = {x: 1, y: 1}
+            }
         ) {
         this.ctx = ctx;
         this.width = linewidth * SCALE;
@@ -66,19 +70,21 @@ class LineAnimation {
                        - Math.floor(nlines/2) * this.width * this.direction.y);
         var start_y = (this.origin.y
                        - Math.floor(nlines/2) * SCALE * (-this.direction.x));
-        var offset, stepsize, color, length, max_length;
+        var offset, stepsize, color, length, max_length, min_length;
         for (let i = 0; i < nlines; i++) {
             offset = i * this.width;
             color = this.color.copy()
-            color.alpha = 0.5 * Math.random() + 0.3;
+            color.alpha = 0.3 * Math.random() + 0.1;
             stepsize = (this.maxstepsize - this.minstepsize) * Math.random() + this.minstepsize;
             // random length of the line
             length = (this.longest - this.shortest) * Math.random() + this.shortest;
             max_length = (this.longest - this.shortest) * Math.random() + this.shortest;
+            min_length = (max_length - this.shortest) * Math.random() + this.shortest;
             this.lines.push(new Line(
                 start_x + offset * this.direction.y,
                 start_y + offset * (-this.direction.x),
                 length,
+                min_length,
                 max_length,
                 color,
                 stepsize
@@ -87,7 +93,7 @@ class LineAnimation {
     }
 
     drawLines() {
-        this.ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
+        this.ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.lines.forEach((line) => {
             this.ctx.beginPath();
             this.ctx.moveTo(line.x, line.y);
@@ -100,25 +106,40 @@ class LineAnimation {
         });
     }
 
-    _anim_step() {
+    step() {
         this.drawLines();
-        var color;
         this.lines.forEach((line, i) => {
-            line.length += line.stepsize;
-            if (line.length > line.max_length) {
-                color = this.color.copy();
-                color.alpha = 0.5 * Math.random() + 0.3;
-                line.color = color;
-                line.stepsize = (this.maxstepsize - this.minstepsize) * Math.random() + this.minstepsize;
-                line.length = (this.longest - this.shortest) * Math.random() + this.shortest;
-                line.max_length = (this.longest - this.shortest) * Math.random() + this.shortest;
+            if (line.ascending) {
+                line.length += line.stepsize;
+                if (line.length > line.max_length) {
+                    line.ascending = false;
+                    line.stepsize = (
+                        (this.maxstepsize - this.minstepsize) * Math.random() + this.minstepsize
+                    );
+                    line.max_length = (
+                        (this.longest - this.shortest) * Math.random() + this.shortest
+                    );
+                    line.min_length = (
+                        (line.max_length - this.shortest) * Math.random() + this.shortest
+                    );
+                }
+            }
+            else {
+                line.length -= line.stepsize;
+                if (line.length < line.min_length) {
+                    line.ascending = true;
+                    line.stepsize = (
+                        (this.maxstepsize - this.minstepsize) * Math.random() + this.minstepsize
+                    );
+                    line.max_length = (
+                        (this.longest - this.shortest) * Math.random() + this.shortest
+                    );
+                    line.min_length = (
+                        (line.max_length - this.shortest) * Math.random() + this.shortest
+                    );
+                }
             }
         })
-        requestAnimationFrame(this._anim_step.bind(this));
-    }
-
-    animate() {
-        requestAnimationFrame(this._anim_step.bind(this));
     }
 }
 
@@ -129,10 +150,10 @@ function main() {
 
     var ctx = canvas.getContext("2d");
 
-    const anim = new LineAnimation(ctx, {
-        nlines: 80,
-        linewidth: 4,
-        minstepsize: 0.01,
+    const animation = new LineAnimation(ctx, {
+        nlines: 300,
+        linewidth: 1,
+        minstepsize: 0.05,
         maxstepsize: 0.1,
         shortest: 0,
         longest: 10,
@@ -141,7 +162,8 @@ function main() {
         direction: {x: 0, y: -1},
     });
 
-    anim.animate()
+    animation.step();
+    canvas.addEventListener("mousemove", function() {animation.step();})
 }
 
 main();

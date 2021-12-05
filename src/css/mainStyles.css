@@ -1,18 +1,16 @@
 h1 {
-    color: rgba(150, 5, 150, 1.0);
+    color: rgb(45, 125, 175);
     font-size: 800%;
     height: "auto";
-    font-family: 'Courier New';
+    font-family: "Marcellus SC";
     text-align: center;
-	text-shadow: 7px 3px 0px rgb(50, 5, 50);
+	text-shadow: 5px 3px 0px rgb(15, 65, 120);
     margin: 10px 0px 0px 0px;
     user-select: none;
     position: relative;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     background: rgb(20, 0, 30);
     background-image: url(../img/icon.svg);
     background-position: 0px 85px;
@@ -20,30 +18,50 @@ body {
     background-attachment: fixed;
 }
 
-section {
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.banner {
     padding-left: 10%;
     padding-right: 10%;
     padding-bottom: 5px;
     padding-top: 2px;
     background-image:
         linear-gradient(to right,
-            rgba(156, 28, 129, 0.4) 0%,
-            rgba(156, 28, 129, 0.3) 30%,
-            rgba(156, 28, 129, 0.2) 45%,
-            rgba(156, 28, 129, 0.2) 65%,
-            rgba(156, 28, 129, 0.3) 70%,
-            rgba(156, 28, 129, 0.4) 100%
+            rgba(240, 20, 155, 0.7) 0%,
+            rgba(240, 20, 155, 0.3) 20%,
+            rgba(240, 20, 155, 0.2) 35%,
+            rgba(240, 20, 155, 0.2) 65%,
+            rgba(240, 20, 155, 0.3) 80%,
+            rgba(240, 20, 155, 0.7) 100%
         );
     font-size: 250%;
     color: rgb(199, 199, 199);
+    text-align: center;
 }
 
-canvas {
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.panel {
+    color: rgb(195, 248, 255);
+    padding: 0.01em 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(240, 20, 155, 0.15);
+}
+
+.panel-header {
+    color: rgba(45, 125, 175, 0.9);
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 48.75% 48.75%;
+    column-gap: 2.5%;
 }
