@@ -3,23 +3,42 @@
 <html>
 
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Marcellus SC' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="css/mainStyles.css">
     <link rel="icon" href="img/icon.png">
     <title>CodingGriffin</title>
     <header>
         <h1>CodingGriffin</h1>
-        <article>
-        <div class="mainpage">
-            <section style="text-align:center;">
-                Coding in Greifswald
-            </section>
+        <div class="banner">
+            Coding in Greifswald
         </div>
-    </article>
     </header>
 </head>
 
 <body>
+    <div class="grid">
+        <div class="panel" grid-column-start=1 grid-column-end=5>
+            <div class="panel-header">Projects</div>
+            TEXT<br>
+            <img src="img/icon.png" width="160"></img>
+        </div>
+        <div class="panel">
+            <div class="panel-header">Upcoming Projects</div>
+            TEXT<br>
+            <img src="img/icon.png" width="160"></img>
+        </div>
+        <div class="panel">
+            <div class="panel-header">Contact</div>
+            TEXT<br>
+        </div>
+        <div class="panel">
+            <div class="panel-header">About</div>
+            TEXT<br>
+        </div>
+    </div>
 
+    <canvas id="canvas"></canvas>
+    <script type="module" src="js/animation.js"></script>
 </body>
 
 </html>
