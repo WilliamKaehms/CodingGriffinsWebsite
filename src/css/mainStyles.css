@@ -1,7 +1,6 @@
 h1 {
     color: rgb(45, 125, 175);
-    font-size: 800%;
-    height: "auto";
+    font-size: 150px;
     font-family: "Marcellus SC";
     text-align: center;
 	text-shadow: 5px 3px 0px rgb(15, 65, 120);
@@ -19,7 +18,7 @@ body {
 }
 
 canvas {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

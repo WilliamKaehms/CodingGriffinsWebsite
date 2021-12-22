@@ -108,7 +108,7 @@ class LineAnimation {
 
     step() {
         this.drawLines();
-        this.lines.forEach((line, i) => {
+        this.lines.forEach((line) => {
             if (line.ascending) {
                 line.length += line.stepsize;
                 if (line.length > line.max_length) {
