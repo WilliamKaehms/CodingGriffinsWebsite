@@ -1,16 +1,27 @@
+
+:root{
+    --bg-color: #290D29; /*rgb(20,0,30)*/
+    --accent-color: #3D8979; /*orange: #F8B195*/ /*turquoise: #57C3AD*/ /*pink: #F6D7E8*/
+    --accent-shadow: #2C6357; /*orange: #AE7C68*/ /*turquoise: #3D8979*/ /*pink: #DDC2D1*/
+    --text-color: #F6D7E8;
+    --header-color: #BB81A1;
+    --font: "Marcellus SC";
+}
+
+
 h1 {
-    color: rgb(45, 125, 175);
+    color: var(--accent-color); 
     font-size: 150px;
-    font-family: "Marcellus SC";
+    font-family: var(--font);
     text-align: center;
-	text-shadow: 5px 3px 0px rgb(15, 65, 120);
+	text-shadow: 5px 3px 0px var(--accent-shadow); 
     margin: 10px 0px 0px 0px;
     user-select: none;
     position: relative;
 }
 
 body {
-    background: rgb(20, 0, 30);
+    background: var(--bg-color); 
     background-image: url(../img/icon.svg);
     background-position: 0px 85px;
     background-size: 100% 100%;
@@ -32,28 +43,31 @@ canvas {
     padding-top: 2px;
     background-image:
         linear-gradient(to right,
-            rgba(240, 20, 155, 0.7) 0%,
-            rgba(240, 20, 155, 0.3) 20%,
-            rgba(240, 20, 155, 0.2) 35%,
-            rgba(240, 20, 155, 0.2) 65%,
-            rgba(240, 20, 155, 0.3) 80%,
-            rgba(240, 20, 155, 0.7) 100%
+            #854D8530 0%,
+            #75367570 20%,
+            #66206680 35%,
+            #66206680 /*rgba(240, 20, 155, 0.2)*/ 65%,
+            #75367570 /*rgba(240, 20, 155, 0.3)*/ 80%,
+            #854D8530 /*rgba(240, 20, 155, 0.7)*/ 100%
         );
     font-size: 250%;
-    color: rgb(199, 199, 199);
+    font-family: var(--font);
+    color: var(--text-color);
     text-align: center;
 }
 
 .panel {
-    color: rgb(195, 248, 255);
+    font-family: var(--font);
+    color: var(--text-color);
     padding: 0.01em 16px;
     margin-top: 16px;
     margin-bottom: 16px;
-    background-color: rgba(240, 20, 155, 0.15);
+    background-color: #521A5285 /*rgba(240, 20, 155, 0.15)*/;
 }
 
 .panel-header {
-    color: rgba(45, 125, 175, 0.9);
+    font-family: var(--font);
+    color: var(--header-color); 
     font-size: 40px;
     font-weight: bold;
     text-align: center;

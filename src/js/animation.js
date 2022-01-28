@@ -157,7 +157,7 @@ function main() {
         maxstepsize: 0.1,
         shortest: 0,
         longest: 10,
-        color: new Color(150, 5, 150),
+        color: new Color(102,32,102), /*150, 5, 150*/
         origin: {x: canvas.width / 2, y: canvas.height},
         direction: {x: 0, y: -1},
     });
